@@ -1,5 +1,9 @@
-# fitness
-Projeto iniciado com o objetivo de entregar uma solução prática para a realização de avaliações físicas. A ideia é permitir que profissionais de Educação Física possam acompanhar os dados de seus alunos, gerando e enviando relatórios.
+![layout](https://github.com/danielaraujodelucena/fitness/blob/main/layout.jpg)
 
-![Alt text](https://drive.google.com/file/d/1IFZESXHmX5nFd68cSbE3_fD5w1J70RKK/view?usp=sharing)
+## Descrição
+Projeto iniciado com o objetivo de desenvolver um produto para auxiliar o profissional de Educação Física na realização de avaliações físicas. 
+
+## Diagrama de classes
+Como o projeto está em evolução, mudanças podem acontecer. Entretando, é possível observar uma prévia representação dos relacionamentos entre as classes.
+![diagrama de classes](https://github.com/danielaraujodelucena/fitness/blob/main/diagrama%20de%20classes.png)
 
