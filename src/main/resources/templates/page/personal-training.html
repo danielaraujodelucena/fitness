@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Fitness</title>
+</head>
+<body>
+
+<h1>Personal Training</h1>
+
+	<div class="container">
+		<div class="row">
+	    	<div class="col-4">
+	    		<form method="POST" action="save-personal-training">
+					<div class="mb-3">
+				  		<label class="form-label">Nome</label>
+				  		<input type="text" class="form-control" name="name">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Sexo</label>
+				  		<input type="text" class="form-control" name="sex">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">CREF</label>
+				  		<input type="text" class="form-control" name="cref">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Especialidade</label>
+				  		<input type="text" class="form-control" name="especialty">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Email</label>
+				  		<input type="email" class="form-control" name="email" placeholder="name@example.com">
+					</div>
+					
+					<input type="submit" name="salvar" value="Salvar">
+			
+				</form>  
+	    	</div>
+	    	
+		    <div class="col-8">
+		    	<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Nome</th>
+				      <th scope="col">Sexo</th>
+				      <th scope="col">Especialidade</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr th:each = "personalTraining : ${personalTrainingList}">
+				      <th th:text = "${personalTraining.id}"></th>
+				      <td th:text = "${personalTraining.name}"></td>
+				      <td th:text = "${personalTraining.sex}"></td>
+				      <td th:text = "${personalTraining.especialty}"></td>
+				    </tr>
+				  </tbody>
+				</table>
+		    </div>
+	  	</div>
+	</div>
+
+	
+
+</body>
+</html> 
