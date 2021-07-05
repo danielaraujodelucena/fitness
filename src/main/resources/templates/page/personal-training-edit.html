@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<title>Fitness</title>
+</head>
+<body>
+
+<h1>Edit Personal Training</h1>
+
+	<div class="container">
+		<div class="row">
+	    	<div class="col-4">
+	    		<form method="POST" action="save-personal-training" th:object="${personalTraining}">
+	    			<input type="hidden" name="id" th:field="*{id}">
+	    		
+					<div class="mb-3">
+				  		<label class="form-label">Nome</label>
+				  		<input type="text" class="form-control" name="name" th:field="*{name}">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Sexo</label>
+				  		<input type="text" class="form-control" name="sex" th:field="*{sex}">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">CREF</label>
+				  		<input type="text" class="form-control" name="cref" th:field="*{cref}">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Especialidade</label>
+				  		<input type="text" class="form-control" name="especialty" th:field="*{especialty}">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Email</label>
+				  		<input type="email" class="form-control" name="email" placeholder="name@example.com">
+					</div>
+					
+					<input type="submit" name="salvar" value="Salvar">
+			
+				</form>  
+	    	</div>
+	    	
+		    <div class="col-8">
+		 		Outro conteúdo
+		    </div>
+	  	</div>
+	</div>
+
+	
+	
+</body>
+</html> 
