@@ -16,14 +16,23 @@ public class PersonalTrainingController {
 	private PersonalTrainingRepository personalTrainingRepository;
 	
 	@RequestMapping(method=RequestMethod.GET, value="/personal-training")
-	public String inicio() {
-		return "page/personal-training";
+	public ModelAndView inicio() {
+		ModelAndView modelAndView = new ModelAndView("page/personal-training");
+		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAll();
+		modelAndView.addObject("personalTrainingList", personalIt);
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="/save-personal-training")
-	public String save(PersonalTraining personalTraining) {
+	public ModelAndView save(PersonalTraining personalTraining) {
 		personalTrainingRepository.save(personalTraining);
-		return "page/personal-training";
+		
+		ModelAndView modelAndView = new ModelAndView("page/personal-training");
+		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAll();
+		modelAndView.addObject("personalTrainingList", personalIt);
+		
+		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value="/list-personal-training")
