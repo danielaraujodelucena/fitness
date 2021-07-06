@@ -51,12 +51,19 @@ public class PersonalTrainingController {
 	}
 	
 	@GetMapping("/personal-training-edit/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
+	public ModelAndView edit(@PathVariable("id") Long id) {
 		Optional<PersonalTraining> personalTraining = personalTrainingRepository.findById(id);
 		
 		ModelAndView modelAndView = new ModelAndView("page/personal-training-edit");
 		modelAndView.addObject("personalTraining", personalTraining.get());
 		
 		return modelAndView;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/personal-training-delete/{id}")
+	public ModelAndView delete(@PathVariable("id") Long id) {
+		personalTrainingRepository.deleteById(id);
+		
+		return findAll();
 	}
 }

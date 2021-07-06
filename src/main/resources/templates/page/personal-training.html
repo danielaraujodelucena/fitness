@@ -63,7 +63,7 @@
 				      <td th:text = "${personalTraining.especialty}"></td>
 				      <td>
 				      	<a th:href="@{/personal-training-edit/{id}(id=${personalTraining.id})}">EDITAR</a>
-				      	<a href="">EXCLUIR</a>
+				      	<a th:href="@{/personal-training-delete/{id}(id=${personalTraining.id})}">EXCLUIR</a>
 				      </td>
 				    </tr>
 				  </tbody>
