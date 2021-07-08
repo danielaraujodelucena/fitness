@@ -8,12 +8,12 @@
 </head>
 <body>
 
-<h1>Edit Personal Training</h1>
+<h1>Edit Client</h1>
 
 	<div class="container">
 		<div class="row">
 	    	<div class="col-4">
-	    		<form method="POST" action="save-personal-training" th:object="${personalTraining}">
+	    		<form method="POST" action="save-client" th:object="${client}">
 	    			<input type="hidden" name="id" th:field="*{id}">
 	    		
 					<div class="mb-3">
@@ -27,13 +27,8 @@
 					</div>
 					
 					<div class="mb-3">
-				  		<label class="form-label">CREF</label>
-				  		<input type="text" class="form-control" name="cref" th:field="*{cref}">
-					</div>
-					
-					<div class="mb-3">
-				  		<label class="form-label">Especialidade</label>
-				  		<input type="text" class="form-control" name="especialty" th:field="*{especialty}">
+				  		<label class="form-label">Informações adicionais</label>
+				  		<input type="text" class="form-control" name="detail" th:field="*{detail}">
 					</div>
 					
 					<input type="submit" name="salvar" value="Salvar">

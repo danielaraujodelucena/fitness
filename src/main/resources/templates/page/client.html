@@ -8,13 +8,13 @@
 </head>
 <body>
 
-<h1>Personal Training</h1>
+<h1>Cliente</h1>
 <h3><a href="/logout"> Sair </a></h3>
 
 	<div class="container">
 		<div class="row">
 	    	<div class="col-4">
-	    		<form method="POST" action="save-personal-training">  		
+	    		<form method="POST" action="save-client">  		
 					<div class="mb-3">
 				  		<label class="form-label">Nome</label>
 				  		<input type="text" class="form-control" name="name">
@@ -36,18 +36,12 @@
 					</div>
 					
 					<div class="mb-3">
-				  		<label class="form-label">CREF</label>
-				  		<input type="text" class="form-control" name="cref">
+				  		<label class="form-label">Informações adicionais</label>
+				  		<input type="text" class="form-control" name="detail">
 					</div>
 					
-					<div class="mb-3">
-				  		<label class="form-label">Especialidade</label>
-				  		<input type="text" class="form-control" name="especialty">
-					</div>
-					
-					<input type="hidden" name="type" value="PERSONAL-TRAINING">
+					<input type="hidden" name="type" value="CLIENT">
 					<input type="hidden" name="status" value="1">
-					<input type="hidden" name="level" value="1">
 					
 					<input type="submit" name="salvar" value="Salvar">
 			
@@ -61,19 +55,17 @@
 				      <th scope="col">#</th>
 				      <th scope="col">Nome</th>
 				      <th scope="col">Sexo</th>
-				      <th scope="col">Especialidade</th>
 				      <th scope="col">Ações</th>
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr th:each = "personalTraining : ${personalTrainingList}">
-				      <th th:text = "${personalTraining.id}"></th>
-				      <td th:text = "${personalTraining.name}"></td>
-				      <td th:text = "${personalTraining.sex}"></td>
-				      <td th:text = "${personalTraining.especialty}"></td>
+				    <tr th:each = "client : ${clientList}">
+				      <th th:text = "${client.id}"></th>
+				      <td th:text = "${client.name}"></td>
+				      <td th:text = "${client.sex}"></td>
 				      <td>
-				      	<a th:href="@{/personal-training-edit/{id}(id=${personalTraining.id})}">EDITAR</a>
-				      	<a th:href="@{/personal-training-delete/{id}(id=${personalTraining.id})}">EXCLUIR</a>
+				      	<a th:href="@{/client-edit/{id}(id=${client.id})}">EDITAR</a>
+				      	<a th:href="@{/client-delete/{id}(id=${client.id})}">EXCLUIR</a>
 				      </td>
 				    </tr>
 				  </tbody>

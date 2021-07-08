@@ -11,56 +11,41 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name="person")
-public class PersonalTraining extends Person implements Serializable, UserDetails {
+public class Client extends Person implements Serializable, UserDetails {
 	static final long serialVersionUID = 1L;
 
-	private String cref;
-	private String especialty;
-	private String level;
+	private String detail;
 	
-	public PersonalTraining() {
+	public Client() {
 
 	}
 	
-	public PersonalTraining(String name, String sex, String userName, String password, String cref, String especialty, String type, String status, String level) {
+	public Client(String name, String sex, String userName, String password, String type, String status, String detail) {
 		super(name, sex, userName, password, type, status);
-		this.cref = cref;
-		this.especialty = especialty;
-		this.level = level;
+		this.detail = detail;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
 	}
 	
-	public String getCref() {
-		return cref;
-	}
-
-	public void setCref(String cref) {
-		this.cref = cref;
-	}
-
-	public String getEspecialty() {
-		return especialty;
-	}
-
-	public void setEspecialty(String especialty) {
-		this.especialty = especialty;
-	}
-
-	public String getLevel() {
-		return level;
-	}
-
-	public void setLevel(String level) {
-		this.level = level;
-	}
-
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return super.getRoles();
 	}
 
 	@Override
+	public String getPassword() {
+		return super.getPassword();
+	}
+
+	@Override
 	public String getUsername() {
-		return super.getUserName();
+		return this.getUserName();
 	}
 
 	@Override

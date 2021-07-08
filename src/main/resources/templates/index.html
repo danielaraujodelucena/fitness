@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <body>
 
 <h1>Seja bem-vindo</h1>
 <p>My first paragraph.</p>
+	
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<a href="personal-training">Personal Training</a>
+	</div>
+	
+	<a href="client">Client</a>
 
-<a href="page/personal-training.html">Personal Training</a>
 </body>
 </html> 

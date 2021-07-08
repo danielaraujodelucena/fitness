@@ -9,10 +9,13 @@ import com.bitinterativo.fitness.model.PersonalTraining;
 
 @Repository
 @Transactional
-public interface PersonalTrainingRepository extends CrudRepository<PersonalTraining, Long>{
+public interface PersonRepository extends CrudRepository<PersonalTraining, Long>{
 	
 	@Query("select u from PersonalTraining u where u.userName = ?1")
-	PersonalTraining findPersonByUserName(String user_name);
+	PersonalTraining findPersonalTrainingByUserName(String user_name);
+	
+	@Query("select u from Client u where u.userName = ?1")
+	PersonalTraining findClientByUserName(String user_name);
 }
 
 

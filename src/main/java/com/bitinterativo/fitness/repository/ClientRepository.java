@@ -5,14 +5,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bitinterativo.fitness.model.PersonalTraining;
+import com.bitinterativo.fitness.model.Client;
 
 @Repository
 @Transactional
-public interface PersonalTrainingRepository extends CrudRepository<PersonalTraining, Long>{
+public interface ClientRepository extends CrudRepository<Client, Long>{
 	
-	@Query("select u from PersonalTraining u where u.userName = ?1")
-	PersonalTraining findPersonByUserName(String user_name);
+	@Query("select u from Client u where u.userName = ?1")
+	Client findPersonByUserName(String user_name);
 }
 
 
