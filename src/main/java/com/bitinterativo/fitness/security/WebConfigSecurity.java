@@ -28,7 +28,10 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 		.antMatchers(HttpMethod.GET, "/personal-training").hasAnyRole("ADMIN") 
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll() 
-		.and().logout() 
+		.loginPage("/login")
+		.defaultSuccessUrl("/home")
+		.failureUrl("/login?error=true")
+		.and().logout().logoutSuccessUrl("/login")
 		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
 	}
 	

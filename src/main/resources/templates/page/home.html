@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>Seja bem-vindo</h1>
+<p>Painel Administrativo</p>
+	
+	<div sec:authorize="hasRole('ROLE_ADMIN')">
+		<a href="personal-training">Personal Training</a>
+	</div>
+	
+	<a href="client">Client</a>
+
+</body>
+</html> 
