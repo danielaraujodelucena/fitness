@@ -9,6 +9,13 @@
 <body>
 
 <h1>Edit Personal Training</h1>
+<h3><a href="/logout"> Sair </a></h3>
+	<a href="/home">Home</a>
+
+	<p th:text = "${userName}"></p>
+	<p th:text = "${user.name}"></p>
+	<p th:text = "${user.id}"></p>
+	<p th:text = "${user.type}"></p>
 
 	<div class="container">
 		<div class="row">
@@ -27,6 +34,16 @@
 					</div>
 					
 					<div class="mb-3">
+				  		<label class="form-label">Username (email)</label>
+				  		<input type="email" class="form-control" name="userName" th:field="*{userName}">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Password</label>
+				  		<input type="text" class="form-control" name="password" th:field="*{password}">
+					</div>
+					
+					<div class="mb-3">
 				  		<label class="form-label">CREF</label>
 				  		<input type="text" class="form-control" name="cref" th:field="*{cref}">
 					</div>
@@ -35,6 +52,10 @@
 				  		<label class="form-label">Especialidade</label>
 				  		<input type="text" class="form-control" name="especialty" th:field="*{especialty}">
 					</div>
+					
+					<input type="hidden" name="type" th:value="*{type}">
+					<input type="hidden" name="status" th:value="*{status}">
+					<input type="hidden" name="level" th:value="*{level}">
 					
 					<input type="submit" name="salvar" value="Salvar">
 			

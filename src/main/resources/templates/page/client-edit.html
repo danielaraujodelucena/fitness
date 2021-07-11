@@ -9,6 +9,12 @@
 <body>
 
 <h1>Edit Client</h1>
+<a href="/home">Home</a>
+
+	<p th:text = "${userName}"></p>
+	<p th:text = "${user.name}"></p>
+	<p th:text = "${user.id}"></p>
+	<p th:text = "${user.type}"></p>
 
 	<div class="container">
 		<div class="row">
@@ -22,6 +28,16 @@
 					</div>
 					
 					<div class="mb-3">
+				  		<label class="form-label">Username (email)</label>
+				  		<input type="email" class="form-control" name="userName" th:field="*{userName}">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Password</label>
+				  		<input type="text" class="form-control" name="password" th:field="*{password}">
+					</div>
+					
+					<div class="mb-3">
 				  		<label class="form-label">Sexo</label>
 				  		<input type="text" class="form-control" name="sex" th:field="*{sex}">
 					</div>
@@ -30,6 +46,10 @@
 				  		<label class="form-label">Informações adicionais</label>
 				  		<input type="text" class="form-control" name="detail" th:field="*{detail}">
 					</div>
+					
+					<input type="hidden" name="type" th:value="*{type}">
+					<input type="hidden" name="status" th:value="*{status}">
+					<input type="hidden" name="idPersonalTraining" th:value= "*{idPersonalTraining}">
 					
 					<input type="submit" name="salvar" value="Salvar">
 			

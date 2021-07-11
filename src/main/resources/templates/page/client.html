@@ -10,6 +10,12 @@
 
 <h1>Cliente</h1>
 <h3><a href="/logout"> Sair </a></h3>
+<a href="/home">Home</a>
+
+	<p th:text = "${userName}"></p>
+	<p th:text = "${user.name}"></p>
+	<p th:text = "${user.id}"></p>
+	<p th:text = "${user.type}"></p>
 
 	<div class="container">
 		<div class="row">
@@ -42,6 +48,7 @@
 					
 					<input type="hidden" name="type" value="CLIENT">
 					<input type="hidden" name="status" value="1">
+					<input type="hidden" name="idPersonalTraining" th:value= "${user.id}">
 					
 					<input type="submit" name="salvar" value="Salvar">
 			

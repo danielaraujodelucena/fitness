@@ -3,6 +3,7 @@ package com.bitinterativo.fitness.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,28 +22,49 @@ public class PersonalTrainingController {
 	
 	@RequestMapping(method=RequestMethod.GET, value="/personal-training")
 	public ModelAndView inicio() {
-		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAll();
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		PersonalTraining personalTraining = null;
+	
+		if(personalTrainingRepository.findPersonByUserName(userName) != null) {
+			personalTraining = personalTrainingRepository.findPersonByUserName(userName);
+		}
+		
+		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAllPersonalTraining();
 		
 		ModelAndView modelAndView = new ModelAndView("page/personal-training");
 		modelAndView.addObject("personalTrainingList", personalIt);
+		modelAndView.addObject("userName", userName);
+		modelAndView.addObject("user", personalTraining);
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="**/save-personal-training")
 	public ModelAndView save(PersonalTraining personalTraining) {
-		personalTrainingRepository.save(personalTraining);
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		PersonalTraining personal = null;
+		
+		if(personalTrainingRepository.findPersonByUserName(userName) != null) {
+			personal = personalTrainingRepository.findPersonByUserName(userName);
+		}
+		
+		PersonalTraining personalSave = personalTrainingRepository.save(personalTraining);
+		
+		personalTrainingRepository.savePersonRole(personalSave.getId(), 2L);
+		
+		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAllPersonalTraining();
 		
 		ModelAndView modelAndView = new ModelAndView("page/personal-training");
-		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAll();
 		modelAndView.addObject("personalTrainingList", personalIt);
+		modelAndView.addObject("userName", userName);
+		modelAndView.addObject("user", personal);
 		
 		return modelAndView;
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value="/list-personal-training")
 	public ModelAndView findAll() {
-		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAll();
+		Iterable<PersonalTraining> personalIt = personalTrainingRepository.findAllPersonalTraining();
 		
 		ModelAndView modelAndView = new ModelAndView("page/personal-training");
 		modelAndView.addObject("personalTrainingList", personalIt);
@@ -52,10 +74,19 @@ public class PersonalTrainingController {
 	
 	@GetMapping("/personal-training-edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		PersonalTraining personal = null;
+		
+		if(personalTrainingRepository.findPersonByUserName(userName) != null) {
+			personal = personalTrainingRepository.findPersonByUserName(userName);
+		}
+		
 		Optional<PersonalTraining> personalTraining = personalTrainingRepository.findById(id);
 		
 		ModelAndView modelAndView = new ModelAndView("page/personal-training-edit");
 		modelAndView.addObject("personalTraining", personalTraining.get());
+		modelAndView.addObject("userName", userName);
+		modelAndView.addObject("user", personal);
 		
 		return modelAndView;
 	}
@@ -63,7 +94,8 @@ public class PersonalTrainingController {
 	@RequestMapping(method = RequestMethod.GET, value="/personal-training-delete/{id}")
 	public ModelAndView delete(@PathVariable("id") Long id) {
 		personalTrainingRepository.deleteById(id);
+		personalTrainingRepository.deletePersonRole(id);
 		
-		return findAll();
+		return inicio();
 	}
 }

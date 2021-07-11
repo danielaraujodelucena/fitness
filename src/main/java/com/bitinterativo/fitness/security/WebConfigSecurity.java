@@ -25,7 +25,7 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter{
 		.disable() 
 		.authorizeRequests() 
 		.antMatchers(HttpMethod.GET, "/").permitAll() 
-		.antMatchers(HttpMethod.GET, "/personal-training").hasAnyRole("ADMIN") 
+		.antMatchers(HttpMethod.GET, "/personal-training").hasAnyRole("ADMIN")
 		.anyRequest().authenticated()
 		.and().formLogin().permitAll() 
 		.loginPage("/login")

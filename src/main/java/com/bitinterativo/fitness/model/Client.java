@@ -15,14 +15,16 @@ public class Client extends Person implements Serializable, UserDetails {
 	static final long serialVersionUID = 1L;
 
 	private String detail;
+	private Long idPersonalTraining;
 	
 	public Client() {
 
 	}
 	
-	public Client(String name, String sex, String userName, String password, String type, String status, String detail) {
+	public Client(String name, String sex, String userName, String password, String type, String status, String detail, Long idPersonalTraining) {
 		super(name, sex, userName, password, type, status);
 		this.detail = detail;
+		this.idPersonalTraining = idPersonalTraining;
 	}
 
 	public String getDetail() {
@@ -33,6 +35,14 @@ public class Client extends Person implements Serializable, UserDetails {
 		this.detail = detail;
 	}
 	
+	public Long getIdPersonalTraining() {
+		return idPersonalTraining;
+	}
+
+	public void setIdPersonalTraining(Long idPersonalTraining) {
+		this.idPersonalTraining = idPersonalTraining;
+	}
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return super.getRoles();
