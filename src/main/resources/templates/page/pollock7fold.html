@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+	<title>Fitness</title>
+</head>
+<body>
+
+<h1>Cliente</h1>
+<h3><a href="/logout"> Sair </a></h3>
+<a href="/home">Home</a>
+
+	<p th:text = "${userName}"></p>
+	<p th:text = "${user.name}"></p>
+	<p th:text = "${user.id}"></p>
+	<p th:text = "${user.type}"></p>
+	
+	<h3>Teste de Pollock de 7 dobras</h3>
+
+	<div class="container">
+		<div class="row">
+	    	<div class="col-4">
+	    		<form method="POST" action="save-pollock7fold">  		
+	    			
+					<select name="idClient">
+					  <option th:each ="c : ${listClient}" th:value="${c.id}" th:text="${c.name}"></option>
+					</select>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Peso</label>
+				  		<input type="text" class="form-control" name="weight">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Altura</label>
+				  		<input type="text" class="form-control" name="height">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Subescapular</label>
+				  		<input type="text" class="form-control" name="subscapular">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Axiliar Média</label>
+				  		<input type="text" class="form-control" name="midAxiliary">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Tríceps</label>
+				  		<input type="text" class="form-control" name="triceps">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Coxa</label>
+				  		<input type="text" class="form-control" name="thigh">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Supra-ilíaca</label>
+				  		<input type="text" class="form-control" name="suprailiac">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Abdômen</label>
+				  		<input type="text" class="form-control" name="abdomen">
+					</div>
+					
+					<div class="mb-3">
+				  		<label class="form-label">Peitoral</label>
+				  		<input type="text" class="form-control" name="pectoral">
+					</div>
+					
+					<input type="hidden" name="namePhysicalTest" value="Pollock 7">
+					<input type="hidden" name="idPersonalTraining" th:value= "${user.id}">
+					
+					<input type="submit" name="salvar" value="Salvar">
+			
+				</form>  
+	    	</div>
+	    	
+		    <div class="col-8">
+		    	<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Cliente</th>
+				      <th scope="col">Data</th>
+				      <th scope="col">Relatório</th>
+				      <th scope="col">Ações</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">1</th>
+				      <td>Oscar</td>
+				      <td>11/02/2021</td>
+				      <td>link</td>
+				      <td>EDITAR | EXCLUIR</td>
+				    </tr>
+				  </tbody>
+		    	</table>
+		    </div>
+	  	</div>
+	</div>
+
+	
+	
+</body>
+</html> 

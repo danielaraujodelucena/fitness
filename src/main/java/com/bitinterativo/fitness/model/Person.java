@@ -1,6 +1,7 @@
 package com.bitinterativo.fitness.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.FetchType;
@@ -11,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 @MappedSuperclass
 public abstract class Person implements Serializable {
@@ -23,6 +29,11 @@ public abstract class Person implements Serializable {
 	
 	private String name;
 	private String sex;
+	
+	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/yyyy")
+	@Temporal(TemporalType.DATE)
+	private Date birthDate; 
+	
 	private String userName;
 	private String password;
 	private String type;
@@ -72,6 +83,14 @@ public abstract class Person implements Serializable {
 	
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getUserName() {

@@ -18,6 +18,12 @@
 	
 	<div sec:authorize="hasAnyRole('ROLE_ADMIN', 'ROLE_PERSONAL_TRAINING')">
 		<a href="client">Client</a>
+		
+		<h3>Avaliações</h3>
+		
+		<ul>
+			<li><a href="/pollock7fold">7 Dobras</a></li>
+		</ul>
 	</div>
 	
 	<div sec:authorize="hasRole('ROLE_CLIENT')">
