@@ -1,6 +1,7 @@
 package com.bitinterativo.fitness.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -18,15 +19,13 @@ public class Pollock7Fold extends PhysicalTest implements Serializable {
 	private Double suprailiac;
 	private Double abdomen;
 	private Double pectoral;
-	private Long idClient;
-	private Long idPersonalTraining;
 	
 	public Pollock7Fold() {
 	
 	}
 	
-	public Pollock7Fold(Double weight, Double height, String namePhysicalTest, Double subscapular, Double midAxiliary, Double triceps, Double thigh, Double suprailiac, Double abdomen, Double pectoral, Long idClient, Long idPersonalTraining) {
-		super(weight, height, namePhysicalTest);
+	public Pollock7Fold(Date date, Long id_client, Long id_personalTraining, Double weight, Double height, String namePhysicalTest, Double subscapular, Double midAxiliary, Double triceps, Double thigh, Double suprailiac, Double abdomen, Double pectoral) {
+		super(date, id_client, id_personalTraining, weight, height, namePhysicalTest);
 		this.subscapular = subscapular;
 		this.midAxiliary = midAxiliary;
 		this.triceps = triceps;
@@ -34,8 +33,6 @@ public class Pollock7Fold extends PhysicalTest implements Serializable {
 		this.suprailiac = suprailiac;
 		this.abdomen = abdomen;
 		this.pectoral = pectoral;
-		this.idClient = idClient;
-		this.idPersonalTraining = idPersonalTraining;
 	}
 
 	public String getBodyDensity() {
@@ -102,21 +99,5 @@ public class Pollock7Fold extends PhysicalTest implements Serializable {
 
 	public void setPectoral(Double pectoral) {
 		this.pectoral = pectoral;
-	}
-
-	public Long getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(Long idClient) {
-		this.idClient = idClient;
-	}
-
-	public Long getIdPersonalTraining() {
-		return idPersonalTraining;
-	}
-
-	public void setIdPersonalTraining(Long idPersonalTraining) {
-		this.idPersonalTraining = idPersonalTraining;
 	}
 }

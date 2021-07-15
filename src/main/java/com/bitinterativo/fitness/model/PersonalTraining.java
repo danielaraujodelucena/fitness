@@ -2,10 +2,8 @@ package com.bitinterativo.fitness.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -19,9 +17,6 @@ public class PersonalTraining extends Person implements Serializable, UserDetail
 	private String cref;
 	private String especialty;
 	private String level;
-	
-	@OneToMany(mappedBy = "personalTraining")
-	private List<PhysicalAssessment> listPhysicalAssessment;
 	
 	public PersonalTraining() {
 

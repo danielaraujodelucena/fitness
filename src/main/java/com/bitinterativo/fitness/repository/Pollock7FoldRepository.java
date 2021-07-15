@@ -9,7 +9,6 @@ import com.bitinterativo.fitness.model.Pollock7Fold;
 @Repository
 @Transactional
 public interface Pollock7FoldRepository extends CrudRepository<Pollock7Fold, Long>{
-	
 
 }
 

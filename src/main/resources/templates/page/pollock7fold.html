@@ -24,7 +24,7 @@
 	    	<div class="col-4">
 	    		<form method="POST" action="save-pollock7fold">  		
 	    			
-					<select name="idClient">
+					<select name="id_client">
 					  <option th:each ="c : ${listClient}" th:value="${c.id}" th:text="${c.name}"></option>
 					</select>
 					
@@ -73,8 +73,9 @@
 				  		<input type="text" class="form-control" name="pectoral">
 					</div>
 					
+					<input type="hidden" name="date" th:value="${#dates.format(#dates.createNow(),'dd/MM/yyyy')}">
 					<input type="hidden" name="namePhysicalTest" value="Pollock 7">
-					<input type="hidden" name="idPersonalTraining" th:value= "${user.id}">
+					<input type="hidden" name="id_personalTraining" th:value= "${user.id}">
 					
 					<input type="submit" name="salvar" value="Salvar">
 			
@@ -82,6 +83,9 @@
 	    	</div>
 	    	
 		    <div class="col-8">
+		    	outro conteúdo
+		    	
+		    	
 		    	<table class="table">
 				  <thead>
 				    <tr>
@@ -93,15 +97,16 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-				      <th scope="row">1</th>
-				      <td>Oscar</td>
-				      <td>11/02/2021</td>
+				     <tr th:each = "person : ${listPhysicalTestPerson}">
+				      <th th:text = "${person.id}"></th>
+				      <td th:text = "${person.name}"></td>
+				      <td th:text = "${person.date}"></td>
 				      <td>link</td>
 				      <td>EDITAR | EXCLUIR</td>
 				    </tr>
 				  </tbody>
 		    	</table>
+		    	
 		    </div>
 	  	</div>
 	</div>
