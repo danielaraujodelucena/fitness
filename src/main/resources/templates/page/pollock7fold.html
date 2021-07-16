@@ -102,7 +102,10 @@
 				      <td th:text = "${person.name}"></td>
 				      <td th:text = "${person.date}"></td>
 				      <td>link</td>
-				      <td>EDITAR | EXCLUIR</td>
+				      <td>
+				      	<a th:href="@{/pollock7fold-edit/{id}(id=${person.id})}">EDITAR</a>  
+				      	| EXCLUIR
+				      </td>
 				    </tr>
 				  </tbody>
 		    	</table>

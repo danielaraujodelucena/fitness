@@ -1,8 +1,12 @@
 package com.bitinterativo.fitness.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -73,6 +77,28 @@ public class Pollock7FoldController {
 		modelAndView.addObject("listPhysicalTestPerson", physicalTestPersonIt);
 		modelAndView.addObject("userName", userName);
 		modelAndView.addObject("user", personalTraining);
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("/pollock7fold-edit/{id}")
+	public ModelAndView edit(@PathVariable("id") Long id) {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		PersonalTraining personalTraining = null;
+		
+		if(personalTrainingRepository.findPersonByUserName(userName) != null) {
+			personalTraining = personalTrainingRepository.findPersonByUserName(userName);
+		}
+		
+		Optional<Pollock7Fold> pollock7fold = pollock7FoldRepository.findById(id);
+		
+		Client client = clientRepository.findByClientId(pollock7fold.get().getId_client());
+		
+		ModelAndView modelAndView = new ModelAndView("page/pollock7fold-edit");
+		modelAndView.addObject("client", client);
+		modelAndView.addObject("userName", userName);
+		modelAndView.addObject("user", personalTraining);
+		modelAndView.addObject("pollock7fold", pollock7fold);
 		
 		return modelAndView;
 	}

@@ -28,6 +28,9 @@ public interface ClientRepository extends CrudRepository<Client, Long>{
 	@Modifying
 	@Query(value = "DELETE FROM person_role WHERE person_id = (:personId);", nativeQuery = true)
 	void deletePersonRole(@Param("personId") Long personId);
+	
+	@Query(value = "SELECT * FROM person WHERE id = (:id);", nativeQuery = true)
+	Client findByClientId(@Param("id") Long id);
 }
 
 
