@@ -21,8 +21,8 @@ public class Client extends Person implements Serializable, UserDetails {
 
 	}
 	
-	public Client(String name, String sex, String userName, String password, String type, String status, String detail, Long idPersonalTraining) {
-		super(name, sex, userName, password, type, status);
+	public Client(String name, String sex, String phone, String userName, String password, String type, String status, String detail, Long idPersonalTraining) {
+		super(name, sex, phone, userName, password, type, status);
 		this.detail = detail;
 		this.idPersonalTraining = idPersonalTraining;
 	}

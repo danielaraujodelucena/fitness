@@ -56,7 +56,7 @@ public abstract class PhysicalTest implements Serializable {
 	public Date getDate() {
 		return date;
 	}
-
+	
 	public void setDate(Date date) {
 		this.date = date;
 	}

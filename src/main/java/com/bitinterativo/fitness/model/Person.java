@@ -29,6 +29,7 @@ public abstract class Person implements Serializable {
 	
 	private String name;
 	private String sex;
+	private String phone;
 	
 	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.DATE)
@@ -52,9 +53,10 @@ public abstract class Person implements Serializable {
 		
 	}
 	
-	public Person(String name, String sex, String userName, String password, String type, String status) {
+	public Person(String name, String sex, String phone, String userName, String password, String type, String status) {
 		this.name = name;
 		this.sex = sex;
+		this.phone = phone;
 		this.userName = userName;
 		this.password = password;
 		this.type = type;
@@ -83,6 +85,14 @@ public abstract class Person implements Serializable {
 	
 	public void setSex(String sex) {
 		this.sex = sex;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public Date getBirthDate() {

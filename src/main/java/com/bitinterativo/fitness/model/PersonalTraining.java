@@ -22,8 +22,8 @@ public class PersonalTraining extends Person implements Serializable, UserDetail
 
 	}
 	
-	public PersonalTraining(String name, String sex, String userName, String password, String cref, String especialty, String type, String status, String level) {
-		super(name, sex, userName, password, type, status);
+	public PersonalTraining(String name, String sex, String phone, String userName, String password, String cref, String especialty, String type, String status, String level) {
+		super(name, sex, phone, userName, password, type, status);
 		this.cref = cref;
 		this.especialty = especialty;
 		this.level = level;

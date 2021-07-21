@@ -99,9 +99,15 @@
 				  <tbody>
 				     <tr th:each = "person : ${listPhysicalTestPerson}">
 				      <th th:text = "${person.id}"></th>
+				      
 				      <td th:text = "${person.name}"></td>
+				      
 				      <td th:text = "${person.date}"></td>
-				      <td>link</td>
+				      <td>
+				      
+				      </td>
+				      link
+				      	
 				      <td>
 				      	<a th:href="@{/pollock7fold-edit/{id}(id=${person.id})}">EDITAR</a>  
 				      	| EXCLUIR

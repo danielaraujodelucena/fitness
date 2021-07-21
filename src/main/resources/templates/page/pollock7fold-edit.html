@@ -24,6 +24,9 @@
 	    	<div class="col-4">
 	    		<p th:text = "${client.name}"></p>
 	    	
+	    		
+	    	
+	    	
 	    		<form method="POST" action="save-pollock7fold" th:object="${pollock7fold}">  		
 	    			<input type="hidden" name="id" th:field="*{id}">
 	    			
@@ -72,7 +75,7 @@
 				  		<input type="text" class="form-control" name="pectoral" th:field="*{pectoral}">
 					</div>
 											   								
-					
+					<input type="hidden" name="date" th:field="*{date}">
 					<input type="hidden" name="namePhysicalTest" th:field="*{namePhysicalTest}">
 					<input type="hidden" name="id_personalTraining" th:field= "*{id_personalTraining}">
 					<input type="hidden" name="id_client" th:value="${client.id}">
@@ -84,9 +87,17 @@
 	    	
 		    <div class="col-8">
 		    	outro conteúdo
+
+		    	<form method="POST" action="generatePdfPollock7Client">
+					<input type="hidden" th:object="${pollock7fold}"  th:field = "*{id_personalTraining}">
+					<input type="hidden" name="idClient" th:value = "${client.id}">
+					<input type="hidden" th:object="${pollock7fold}" th:field="*{id}">
+					
+					<input type="submit" value="Gerar Relatório">
+				</form>
 		    	
 		    	
-		    	
+		   
 		    </div>
 	  	</div>
 	</div>
