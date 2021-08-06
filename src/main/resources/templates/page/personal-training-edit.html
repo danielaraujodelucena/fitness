@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-	<meta charset="ISO-8859-1">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	
-	<title>Fitness</title>
-</head>
+<head th:replace="fragments/fragments :: head('Medidas e Avaliação | Editar Personal Training')"></head>
 <body>
 
 <h1>Edit Personal Training</h1>
@@ -49,11 +44,6 @@
 					</div>
 					
 					<div class="mb-3">
-				  		<label class="form-label">Senha</label>
-				  		<input type="text" class="form-control" name="password" th:field="*{password}">
-					</div>
-					
-					<div class="mb-3">
 				  		<label class="form-label">CREF</label>
 				  		<input type="text" class="form-control" name="cref" th:field="*{cref}">
 					</div>
@@ -66,6 +56,7 @@
 					<input type="hidden" name="type" th:value="*{type}">
 					<input type="hidden" name="status" th:value="*{status}">
 					<input type="hidden" name="level" th:value="*{level}">
+					<input type="hidden" name="password" th:value="*{password}">
 					
 					<input type="submit" name="salvar" value="Salvar">
 			
@@ -74,11 +65,33 @@
 	    	
 		    <div class="col-8">
 		 		Outro conteúdo
+		 		
+		 		
+		 		<a th:href="@{/reset-password-personal-training/{id}(id=${personalTraining.id})}">Resetar Senha</a>
+		 		<p>A nova senha será o email já cadastrado como usuário</p>
+		 		
+		 		
+		 		<form method="POST" action="reset-password-personal-training" th:object="${personalTraining}">
+	    			<input type="hidden" name="id" th:field="*{id}">
+				  	<input type="hidden" name="name" th:value="*{name}">
+				  	<input type="hidden" name="sex" th:value="*{sex}">
+				  	<input type="hidden" name="phone" th:value="*{phone}">
+				  	<input type="hidden" name="birthDate" th:value="*{birthDate}">
+				  	<input type="hidden" name="userName" th:value="*{userName}">
+				  	<input type="hidden" name="cref" th:value="*{cref}">
+				  	<input type="hidden" name="especialty" th:value="*{especialty}">
+					<input type="hidden" name="type" th:value="*{type}">
+					<input type="hidden" name="status" th:value="*{status}">
+					<input type="hidden" name="level" th:value="*{level}">
+					<input type="hidden" name="password" th:value="*{userName}">
+					
+					<input type="submit" name="reset-password" value="Resetar Senha">
+				</form>
 		    </div>
 	  	</div>
 	</div>
 
 	
-	
+	<footer th:replace="fragments/fragments :: footer"></footer>
 </body>
 </html> 

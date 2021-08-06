@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,11 +43,16 @@ public class PersonalTrainingController {
 	@RequestMapping(method=RequestMethod.POST, value="**/save-personal-training")
 	public ModelAndView save(PersonalTraining personalTraining) {
 		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		BCryptPasswordEncoder enconder = new BCryptPasswordEncoder();
 		PersonalTraining personal = null;
+		String passwordSecurity = null;
 		
 		if(personalTrainingRepository.findPersonByUserName(userName) != null) {
 			personal = personalTrainingRepository.findPersonByUserName(userName);
 		}
+		
+		passwordSecurity = enconder.encode(personalTraining.getPassword());
+		personalTraining.setPassword(passwordSecurity);
 		
 		PersonalTraining personalSave = personalTrainingRepository.save(personalTraining);
 		
@@ -97,5 +103,33 @@ public class PersonalTrainingController {
 		personalTrainingRepository.deletePersonRole(id);
 		
 		return inicio();
+	}
+	
+	@GetMapping("/reset-password-personal-training/{id}")
+	public ModelAndView resetPasswword(@PathVariable("id") Long id) {
+		String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+		String password = null;
+		PersonalTraining person = null;
+		Optional<PersonalTraining> personalTrainingOpt = null;
+		BCryptPasswordEncoder enconder = new BCryptPasswordEncoder();
+		
+		if(personalTrainingRepository.findPersonByUserName(userName) != null) {
+			person = personalTrainingRepository.findPersonByUserName(userName);
+		}
+		
+		if(personalTrainingRepository.findById(id) != null) {
+			personalTrainingOpt = personalTrainingRepository.findById(id);
+		}
+		
+		password = enconder.encode(personalTrainingOpt.get().getUsername());
+		personalTrainingOpt.get().setPassword(password);
+		personalTrainingRepository.save(personalTrainingOpt.get());
+		
+		ModelAndView modelAndView = new ModelAndView("page/personal-training-edit");
+		modelAndView.addObject("personalTraining", personalTrainingOpt.get());
+		modelAndView.addObject("userName", userName);
+		modelAndView.addObject("user", person);
+		
+		return modelAndView;
 	}
 }
