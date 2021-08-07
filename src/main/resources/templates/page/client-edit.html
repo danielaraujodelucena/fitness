@@ -2,17 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/fragments :: head('Medidas e Avaliação | Editar cliente')"></head>
 <body>
-
-<h1>Edit Client</h1>
-<a href="/home">Home</a>
-
-	<p th:text = "${userName}"></p>
-	<p th:text = "${user.name}"></p>
-	<p th:text = "${user.id}"></p>
-	<p th:text = "${user.type}"></p>
-
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
+			<div class="col-12">
+				<nav th:replace="fragments/fragments :: menu"></nav>
+			</div>
+		</div>
+
+		<div class="row">
+
 	    	<div class="col-4">
 	    		<form method="POST" action="save-client" th:object="${client}">
 	    			<input type="hidden" name="id" th:field="*{id}">
@@ -65,9 +63,14 @@
 		 		Outro conteúdo
 		    </div>
 	  	</div>
+
+		<div class="row">
+			<div class="col-12">
+				<footer th:replace="fragments/fragments :: footer"></footer>
+			</div>
+		</div>
+
 	</div>
 
-	<footer th:replace="fragments/fragments :: footer"></footer>
-	
 </body>
 </html> 

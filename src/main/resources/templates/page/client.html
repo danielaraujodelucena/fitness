@@ -1,97 +1,102 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="fragments/fragments :: head('Medidas e Avaliação | Clientes')"></head>
+
 <body>
 
-<h1>Cliente</h1>
-<h3><a href="/logout"> Sair </a></h3>
-<a href="/home">Home</a>
-
-	<p th:text = "${userName}"></p>
-	<p th:text = "${user.name}"></p>
-	<p th:text = "${user.id}"></p>
-	<p th:text = "${user.type}"></p>
-	
-	<form method="POST" action="generatePdfAllClients">
-		<input type="hidden" name="idPersonalTraining" th:value = "${user.id}">
-		<input type="submit" value="Gerar Relatório">
-	</form>
-	
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-	    	<div class="col-4">
-	    		<form method="POST" action="save-client">  		
+			<div class="col-12">
+				<nav th:replace="fragments/fragments :: menu"></nav>
+			</div>
+		</div>
+
+		<div class="row">
+			<form method="POST" action="generatePdfAllClients">
+				<input type="hidden" name="idPersonalTraining" th:value="${user.id}">
+				<input type="submit" value="Gerar Relatório">
+			</form>
+
+			<div class="col-4">
+				<form method="POST" action="save-client">
 					<div class="mb-3">
-				  		<label class="form-label">Nome</label>
-				  		<input type="text" class="form-control" name="name">
+						<label class="form-label">Nome</label>
+						<input type="text" class="form-control" name="name">
 					</div>
-					
+
 					<div class="mb-3">
-				  		<label class="form-label">Sexo</label>
-				  		<input type="text" class="form-control" name="sex">
+						<label class="form-label">Sexo</label>
+						<input type="text" class="form-control" name="sex">
 					</div>
-					
+
 					<div class="mb-3">
-				  		<label class="form-label">Telefone</label>
-				  		<input type="text" class="form-control" name="phone">
+						<label class="form-label">Telefone</label>
+						<input type="text" class="form-control" name="phone">
 					</div>
-					
+
 					<div class="mb-3">
-				  		<label class="form-label">Data de nascimento</label>
-				  		<input type="text" class="form-control" name="birthDate" placeholder="xx/xx/xxxx">
+						<label class="form-label">Data de nascimento</label>
+						<input type="text" class="form-control" name="birthDate" placeholder="xx/xx/xxxx">
 					</div>
-					
+
 					<div class="mb-3">
-				  		<label class="form-label">Usuário (email)</label>
-				  		<input type="email" class="form-control" name="userName" placeholder="name@example.com">
+						<label class="form-label">Usuário (email)</label>
+						<input type="email" class="form-control" name="userName" placeholder="name@example.com">
 					</div>
-					
+
 					<div class="mb-3">
-				  		<label class="form-label">Senha</label>
-				  		<input type="text" class="form-control" name="password">
+						<label class="form-label">Senha</label>
+						<input type="text" class="form-control" name="password">
 					</div>
-					
+
 					<div class="mb-3">
-				  		<label class="form-label">Informações adicionais</label>
-				  		<input type="text" class="form-control" name="detail">
+						<label class="form-label">Informações adicionais</label>
+						<input type="text" class="form-control" name="detail">
 					</div>
-					
+
 					<input type="hidden" name="type" value="CLIENT">
 					<input type="hidden" name="status" value="1">
-					<input type="hidden" name="idPersonalTraining" th:value= "${user.id}">
-					
+					<input type="hidden" name="idPersonalTraining" th:value="${user.id}">
+
 					<input type="submit" name="salvar" value="Salvar">
-			
-				</form>  
-	    	</div>
-	    	
-		    <div class="col-8">
-		    	<table class="table">
-				  <thead>
-				    <tr>
-				      <th scope="col">#</th>
-				      <th scope="col">Nome</th>
-				      <th scope="col">Sexo</th>
-				      <th scope="col">Ações</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr th:each = "client : ${clientList}">
-				      <th th:text = "${client.id}"></th>
-				      <td th:text = "${client.name}"></td>
-				      <td th:text = "${client.sex}"></td>
-				      <td>
-				      	<a th:href="@{/client-edit/{id}(id=${client.id})}">EDITAR</a>
-				      	<a th:href="@{/client-delete/{id}(id=${client.id})}">EXCLUIR</a>
-				      </td>
-				    </tr>
-				  </tbody>
+
+				</form>
+			</div>
+
+			<div class="col-8">
+				<table class="table">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nome</th>
+							<th scope="col">Sexo</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="client : ${clientList}">
+							<th th:text="${client.id}"></th>
+							<td th:text="${client.name}"></td>
+							<td th:text="${client.sex}"></td>
+							<td>
+								<a th:href="@{/client-edit/{id}(id=${client.id})}">EDITAR</a>
+								<a th:href="@{/client-delete/{id}(id=${client.id})}">EXCLUIR</a>
+							</td>
+						</tr>
+					</tbody>
 				</table>
-		    </div>
-	  	</div>
+			</div>
+	
+		</div>
+	
+		<div class="row">
+			<div class="col-12">
+				<footer th:replace="fragments/fragments :: footer"></footer>
+			</div>
+		</div>
 	</div>
 
-	<footer th:replace="fragments/fragments :: footer"></footer>
-	
 </body>
-</html> 
+
+</html>

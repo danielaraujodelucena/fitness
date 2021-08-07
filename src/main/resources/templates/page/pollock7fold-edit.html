@@ -3,25 +3,16 @@
 <head th:replace="fragments/fragments :: head('Medidas e Avaliação | Editar Pollock 7 Dobras')"></head>
 <body>
 
-<h1>Cliente</h1>
-<h3><a href="/logout"> Sair </a></h3>
-<a href="/home">Home</a>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<nav th:replace="fragments/fragments :: menu"></nav>
+			</div>
+		</div>
 
-	<p th:text = "${userName}"></p>
-	<p th:text = "${user.name}"></p>
-	<p th:text = "${user.id}"></p>
-	<p th:text = "${user.type}"></p>
-	
-	<h3>Teste de Pollock de 7 dobras</h3>
-
-	<div class="container">
 		<div class="row">
 	    	<div class="col-4">
-	    		<p th:text = "${client.name}"></p>
-	    	
 	    		
-	    	
-	    	
 	    		<form method="POST" action="save-pollock7fold" th:object="${pollock7fold}">  		
 	    			<input type="hidden" name="id" th:field="*{id}">
 	    			
@@ -90,14 +81,16 @@
 					
 					<input type="submit" value="Gerar Relatório">
 				</form>
-		    	
-		    	
-		   
 		    </div>
 	  	</div>
+	  	
+	  	<div class="row">
+			<div class="col-12">
+				<footer th:replace="fragments/fragments :: footer"></footer>
+			</div>
+		</div>
+	  	
 	</div>
 
-	
-	<footer th:replace="fragments/fragments :: footer"></footer>
 </body>
 </html> 
